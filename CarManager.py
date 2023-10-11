@@ -1,15 +1,21 @@
 class CarManager:
     
-    all_cars = []
-    total_cars = len(all_cars)
+    all_cars = {}
+    total_cars = 0
+    car_id = total_cars + 1
 
-    def __init__(self, make, model, year, mileage):
-        self._id = len(CarManager.all_cars)
-        self._make = make
-        self._model =  model
-        self._year = year
-        self._mileage = mileage
+    def __init__(self):
+        self._id = CarManager.car_id
+        self._model =  CarManager.all_cars[CarManager.total_cars]
+        self._year = CarManager.all_cars
+        self._mileage = CarManager.all_cars
         self._services = []
+        CarManager.all_cars[self._id] = self    # Essentially tells the all_cars 
+        CarManager.total_cars += 1
+
+
+    def __str__(self):
+        return f'{self.make} {self.model} {self.year} {self.mileage} '
 
     @property
     def make(self):
@@ -60,8 +66,8 @@ def count_all_cars():
 
 @staticmethod
 # Takes car obj arg and appends it to class variabl all_cars
-def add_car(new_car):
-    CarManager.all_cars.append(car_to_add)
+def add_to_inventory(new_car):
+    CarManager.all_cars.append(new_car)
 
 @staticmethod
 def update_mileage(new_mileage):
@@ -77,7 +83,7 @@ def get_str_input(prompt):
 
 @staticmethod
 def display_menu():
-    pass
+    print({CarManager})
 
 if __name__ == '__main__':
     # print(count_all_cars())
